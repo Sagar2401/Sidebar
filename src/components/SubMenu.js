@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
-import styled from 'styled-components';
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
+import styled from "styled-components";
 
 const SidebarLink = styled(Link)`
   display: flex;
@@ -63,12 +63,16 @@ const SubMenu = ({ item }) => {
 
       {subnav &&
         item.subNav.map((item, index) => {
-          return (
-            <DropdownLink to={item.webPage} key={index}>
-              {item.icon}
-              <SidebarLabel>{item.displayName}</SidebarLabel>
-            </DropdownLink>
-          );
+          if (item.isActive && item.isActive) {
+            return (
+              <DropdownLink to={item.webPage} key={index}>
+                {item.icon}
+                <SidebarLabel>{item.displayName}</SidebarLabel>
+              </DropdownLink>
+            );
+          } else {
+            return null;
+          }
         })}
     </>
   );

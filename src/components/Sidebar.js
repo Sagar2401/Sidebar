@@ -135,7 +135,12 @@ const Sidebar = () => {
             </NavIcon>
 
             {sidebardata?.map((item, index) => {
+              if(item.isActive&&item.isActive){
+
               return <SubMenu item={item} key={index} />;
+              }else{
+                return null;
+              }
             })}
           </SidebarWrap>
         </SidebarNav>

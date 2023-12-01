@@ -2,14 +2,17 @@ import React, { useState } from "react";
 import axios from "axios";
 import {setCookie} from "../Assets/coockie"
 import { useNavigate } from "react-router-dom";
+import Loading from "../components/Loader/Loading";
 export const Login = () => {
   const navigate = useNavigate();
+
+  const [loading, setLoading] = useState(false)
   const [data, setData] = useState({
     username: "exch365",
     password: "",
   });
   //on submit save data to cookies
-  const handleSubmit = async() => {
+  const handleSubmit = async() => {setLoading(true)
 
     try {
       // Make an HTTP request using Axios
@@ -27,11 +30,13 @@ export const Login = () => {
         console.log('Login successful', userName);
         setCookie('authToken', token);
         navigate("/home");
+        setLoading(false)
       }
 
     } catch (error) {
       // Handle login error
-      console.error('Login failed', error.response.data);
+        setLoading(false)
+        console.error('Login failed', error.response.data);
     }
   };
 
@@ -61,7 +66,7 @@ export const Login = () => {
             }
             value={data.password} type="password" placeholder="Password" />
           <button className="submit-btn" onClick={handleSubmit}>
-            Submit
+            {loading?<Loading/>:"Submit"}
           </button>
         </div>
       </div>
