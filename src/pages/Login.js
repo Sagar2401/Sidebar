@@ -8,7 +8,7 @@ export const Login = () => {
 
   const [loading, setLoading] = useState(false)
   const [data, setData] = useState({
-    username: "exch365",
+    username: "",
     password: "",
   });
   //on submit save data to cookies
@@ -24,10 +24,10 @@ export const Login = () => {
       if(response?.data?.success){
 
         // Handle the response, e.g., store user data in state or localStorage
-        const { token, userName } = response?.data?.result;
+        const { token,  } = response?.data?.result;
         
         // Save the token in a cookie
-        console.log('Login successful', userName);
+        console.log('Login successful');
         setCookie('authToken', token);
         navigate("/home");
         setLoading(false)

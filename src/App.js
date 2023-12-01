@@ -46,7 +46,6 @@ function App() {
     return hierarchy;
   }
 
-  console.log("organizeTabsIntoHierarchy", organizeTabsIntoHierarchy(data));
 
   return (
     <div>
@@ -56,7 +55,6 @@ function App() {
             <Route path="/home" element={<Overview />} />
             {data.map((item) => {
               if (item.webPage) {
-                console.log(item.webPage);
                 return (
                   <Route
                     path={item.webPage.toLocaleLowerCase()}

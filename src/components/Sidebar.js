@@ -89,7 +89,6 @@ const Sidebar = () => {
   useEffect(() => {
   }, [])
   
-  console.log("responce", 11, token);
   let headersList = {
     Accept: "*/*",
     Authorization: `Bearer ${token && token}`,
@@ -105,7 +104,6 @@ const Sidebar = () => {
     try {
       // Make an HTTP request using Axios
       const response = await axios.request(reqOptions);
-      console.log("responce", response);
       if (response?.data?.success) {
     setSidebarData(organizeTabsIntoHierarchy(response?.data?.result))
 
