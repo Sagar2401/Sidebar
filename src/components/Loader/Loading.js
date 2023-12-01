@@ -1,10 +1,14 @@
 import React from 'react'
 import "./loading.css"
 
-const Loading = () => {
+export const Loading = () => {
   return (
     <div class="lds-ellipsis"><div></div><div></div><div></div><div></div></div>
   )
 }
 
-export default Loading
+export const Loading2 = () => {
+  return (
+    <div class="lds-dual-ring"></div>)
+}
+

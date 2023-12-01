@@ -43,80 +43,12 @@ const SidebarWrap = styled.div`
   width: 100%;
 `;
 
-const Sidebar = () => {
+const Sidebar = ({data}) => {
   const [sidebar, setSidebar] = useState(false);
-  const [sidebardata, setSidebarData] = useState([]);
-  const token = getCookie("authToken");
 
   const showSidebar = () => setSidebar(!sidebar);
 
-  function organizeTabsIntoHierarchy(tabArray) {
-    const organizedTabs = {};
-    
-    // Group tabs by parentId
-    tabArray.forEach(tab => {
-      const parentId = tab.parentId;
-      if (!organizedTabs[parentId]) {
-        organizedTabs[parentId] = [];
-      }
-      organizedTabs[parentId].push(tab);
-    });
-  
-    // Build hierarchy
-    function buildHierarchy(parentId) {
-      const children = organizedTabs[parentId];
-      if (children) {
-        return children.map(child => {
-          const childWithChildren = { ...child, children: buildHierarchy(child.encryptedTabId) };
-          return childWithChildren;
-        });
-      } else {
-        return [];
-      }
-    }
-  
-    // Root level tabs (parentId = 0)
-    const rootTabs = organizedTabs['0'] || [];
-    
-    // Build the hierarchy
-    const hierarchy = rootTabs.map(rootTab => {
-      return { ...rootTab, subNav: buildHierarchy(rootTab.encryptedTabId) };
-    });
-  
-    return hierarchy;
-  }
-    
-  useEffect(() => {
-  }, [])
-  
-  let headersList = {
-    Accept: "*/*",
-    Authorization: `Bearer ${token && token}`,
-  };
 
-  let reqOptions = {
-    url: "https://scorenodeapi.cloudd.live/admin/tabs",
-    method: "POST",
-    headers: headersList,
-  };
-
-  const getData = async () => {
-    try {
-      // Make an HTTP request using Axios
-      const response = await axios.request(reqOptions);
-      if (response?.data?.success) {
-    setSidebarData(organizeTabsIntoHierarchy(response?.data?.result))
-
-      }
-    } catch (error) {
-      // Handle login error
-      console.error("Login failed", error);
-    }
-  };
-
-  useEffect(() => {
-    getData();
-  }, []);
 
   return (
     <>
@@ -132,7 +64,7 @@ const Sidebar = () => {
               <AiIcons.AiOutlineClose onClick={showSidebar} />
             </NavIcon>
 
-            {sidebardata?.map((item, index) => {
+            {data?.map((item, index) => {
               if(item.isActive&&item.isActive){
 
               return <SubMenu item={item} key={index} />;

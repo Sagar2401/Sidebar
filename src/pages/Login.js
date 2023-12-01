@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import axios from "axios";
 import {setCookie} from "../Assets/coockie"
 import { useNavigate } from "react-router-dom";
-import Loading from "../components/Loader/Loading";
+import { Loading } from "../components/Loader/Loading";
 export const Login = () => {
   const navigate = useNavigate();
 
