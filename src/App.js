@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import "./App.css";
 import {  Routes, Route, useNavigate,  } from "react-router-dom";
 import Overview from "./pages/Overview";
-import { data } from "./components/SidebarData";
 import { Login } from "./pages/Login";
 import { getCookie } from "./Assets/coockie";
 import axios from "axios";
@@ -99,7 +98,7 @@ useEffect(() => {
         <Route path="/" element={<Login />} />
       
             <Route path="/home" element={<Overview loading={loading} data={sidebardata}/>} />
-            {data.map((item) => {
+            {sidebardata.map((item) => {
               if (item.webPage) {
                 return (
                   <Route

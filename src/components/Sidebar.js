@@ -1,13 +1,11 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import * as FaIcons from 'react-icons/fa';
 import * as AiIcons from 'react-icons/ai';
 import SubMenu from './SubMenu';
 import { IconContext } from 'react-icons/lib';
-import { getCookie } from '../Assets/coockie';
-import axios from 'axios';
 
 const Nav = styled.div`
   background: #15171c;
@@ -47,7 +45,7 @@ const Sidebar = ({data}) => {
   const [sidebar, setSidebar] = useState(false);
 
   const showSidebar = () => setSidebar(!sidebar);
-
+console.log('data', data)
 
 
   return (
